@@ -1,0 +1,61 @@
+{
+  "name": "dev-electron",
+  "version": "0.1.0",
+  "private": true,
+  "description": "App to do a fast capture for Dypaq.",
+  "author": "Alan Colli",
+  "build": {
+    "appId": "develop.com"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.3.0",
+    "@tailwindcss/forms": "^0.5.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "electron-is-dev": "^2.0.0",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
+    "react-scripts": "5.0.1",
+    "sort-by": "^1.2.0",
+    "tailwindcss": "^3.2.6",
+    "wait-on": "^7.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "main": "public/electron.js",
+  "homepage": "./",
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "npm run build && electron-builder --linux --win --mac --x64 --ia32 --publish never",
+    "build": "npm run react-build && npm run electron-build",
+    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
+    "start-electron": "electron ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
