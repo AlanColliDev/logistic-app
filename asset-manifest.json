@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/logistic-app/static/css/main.01540d84.css",
-    "main.js": "/logistic-app/static/js/main.316b4978.js",
+    "main.js": "/logistic-app/static/js/main.1ef22bb6.js",
     "static/media/fa-solid-900.ttf": "/logistic-app/static/media/fa-solid-900.2877d54f94f30c5d563c.ttf",
     "static/media/Montserrat-Regular.ttf": "/logistic-app/static/media/Montserrat-Regular.ceb11275ab638627a643.ttf",
     "static/media/fa-brands-400.ttf": "/logistic-app/static/media/fa-brands-400.13e40630e5866f777de8.ttf",
@@ -15,10 +15,10 @@
     "static/media/fa-v4compatibility.woff2": "/logistic-app/static/media/fa-v4compatibility.497d535001197a9c5b38.woff2",
     "index.html": "/logistic-app/index.html",
     "main.01540d84.css.map": "/logistic-app/static/css/main.01540d84.css.map",
-    "main.316b4978.js.map": "/logistic-app/static/js/main.316b4978.js.map"
+    "main.1ef22bb6.js.map": "/logistic-app/static/js/main.1ef22bb6.js.map"
   },
   "entrypoints": [
     "static/css/main.01540d84.css",
-    "static/js/main.316b4978.js"
+    "static/js/main.1ef22bb6.js"
   ]
 }
