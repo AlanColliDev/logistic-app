@@ -1,4 +1,3 @@
-import { CombustibleProvider } from '../context/Logistica';
 import { GridChofer, FormCombustible, GridRuta, ResumeCombustible } from '../views/logistica'
 
 export const FormQuickCapture = ({ currentForm = 0 }) => {
@@ -13,15 +12,13 @@ export const FormQuickCapture = ({ currentForm = 0 }) => {
 	};
 
 	return (
-		<>cls
+		<>
 			<div className="flex flex-wrap flex-row justify-center items-center">
 				<div className="w-full">
 					<hr className="border-b-1 border-blueGray-300 W-96" />
 				</div>
 				<div className="w-full pt-2.5">
-					<CombustibleProvider>
-						{FormComponents[currentForm]}
-					</CombustibleProvider>
+					{ FormComponents[currentForm] }
 				</div>
 			</div>
 		</>

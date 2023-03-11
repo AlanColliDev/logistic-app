@@ -1,4 +1,5 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer, useContext } from 'react';
+import { CombustibleContext } from '../context/Logistica';
 import { getChoferes, getChoferesByFilter } from '../services/Choferes';
 
 const initUser = {
@@ -11,9 +12,9 @@ const initUser = {
 
 export const useChofer = ({ stringSearch = '' }) => {
 	const [ choferes, setChoferes ] = useState([{}]);
-	const [ choferSelected, setChoferSelected ] = useState(initUser);
 	const [ isLoading, setIsLoading ] = useState( true );
-	
+
+	const { dataCombustible, setCapturaCombustible } = useContext(CombustibleContext)
 
 	const getListChoferes = async () => {
 		const choferList =  await getChoferes();
@@ -32,25 +33,24 @@ export const useChofer = ({ stringSearch = '' }) => {
 	};
 
 	const onSelectChofer = (pchofer) => {
-		setChoferSelected((chofer) => chofer?.clave?.toString() === pchofer.clave.toString() ? initUser : pchofer)
+		setCapturaCombustible(currentData => {
+			const { choferData } = currentData;
+			return {
+				...currentData,
+				choferData: choferData.clave === pchofer.clave ? initUser : pchofer
+			}
+		});
 	};
 
 	useEffect(() => {
 		getListChoferes();
 	}, []);
 
-	useEffect(() => {
-		// tal vez aqui podria establecer algo referente al contexto
-	}, [choferSelected])
-	
-	console.log(choferSelected)
-
-
 	return {
 		choferes,
 		isLoading,
-		choferSelected,
-		isValidChofer: choferes.filter(chofer =>  chofer.clave === choferSelected?.clave).length > 0,
+		choferSelected: dataCombustible.choferData,
+		isValidChofer: choferes.filter(chofer =>  chofer.clave === dataCombustible.choferData.clave).length > 0,
 		onSearchChofer,
 		onSelectChofer
 	};

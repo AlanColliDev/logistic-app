@@ -1,2 +1,2 @@
-export * from './CombusticleContext'
+export * from './CombustibleContext'
 export * from './CombustibleProvider'

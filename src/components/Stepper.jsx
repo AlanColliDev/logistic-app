@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { FormQuickCapture } from './FormQuickCapture';
 
 const Stepper = () => {
@@ -13,6 +13,7 @@ const Stepper = () => {
 	};
 
 	const HandlePreviousStep = () => {
+		if(!currentStep > steps.length) return;
 		setCurrentStep(prev => prev - 1);
 	};
 
@@ -42,11 +43,12 @@ const Stepper = () => {
 			</button>
 			<div className='flex-auto m-2.5 px-4 lg:px-10 pt-0 rounded-2xl'>
 				{
+					
 					<FormQuickCapture currentForm={currentStep} />
 				}
 			</div>
 			<div className='justify-center items-center flex'>
-				<button onClick={HandleNextStep} className='btn bg-gray-900 w-1/12 h-10 rounded-xl text-white px-4 py-1 hover:scale-105 duration-300'>
+				<button onClick={HandleNextStep} className='btn bg-gray-900 w-2/12 h-10 rounded-xl text-white px-4 py-1 hover:scale-105 duration-300'>
 					{currentStep >= steps.length ? 'Guardar' : 'Siguiente'}
 				</button>
 			</div>

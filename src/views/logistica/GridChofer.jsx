@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CardChofer from "../../components/CardChofer";
 import { CombustibleContext } from '../../context/Logistica';
 import { useStepper } from '../../hooks';
@@ -9,8 +9,9 @@ import { FormSearchChofer } from "./";
 export const GridChofer = () => {
 
 
-	const { isLoading, choferes, choferSelected, isValidChofer, onSearchChofer, onSelectChofer } = useChofer({ stringSearch: '' });
-	const { isValid, HandleSetValidStep } = useStepper(isValidChofer); //tengo la idea de mandar el isvalid a un hook
+	const { isLoading, choferes, choferSelected, onSearchChofer, onSelectChofer } = useChofer({ stringSearch: '' });
+
+	// const { isValid, HandleSetValidStep } = useStepper(isValidChofer); //tengo la idea de mandar el isvalid a un hook
 
 	return (
 		<>

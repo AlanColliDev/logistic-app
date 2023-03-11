@@ -2,7 +2,6 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Navbar } from '../components/NavbarLogistica/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
-import TitleComponent from '../components/TitleComponent'
 
 
 export const DashLogistica = () => {

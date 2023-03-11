@@ -4,9 +4,6 @@
   "private": true,
   "description": "App to do a fast capture for Dypaq.",
   "author": "Alan Colli",
-  "build": {
-    "appId": "develop.com"
-  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.3.0",
     "@tailwindcss/forms": "^0.5.3",
@@ -28,8 +25,6 @@
     "wait-on": "^7.0.1",
     "web-vitals": "^2.1.4"
   },
-  "main": "public/electron.js",
-  "homepage": "./",
   "scripts": {
     "rs": "react-scripts start",
     "react-build": "react-scripts build",
@@ -38,7 +33,7 @@
     "electron-build": "electron-builder",
     "release": "npm run build && electron-builder --linux --win --mac --x64 --ia32 --publish never",
     "build": "npm run react-build && npm run electron-build",
-    "start": "concurrently \"cross-env BROWSER=none npm run rs\" \"wait-on http://127.0.0.1:3000 && electron .\"",
+    "start": "concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://127.0.0.1:3000 && electron .\"",
     "start-electron": "electron .",
     "predeploy": "npm run react-build",
     "deploy": "gh-pages -d build"

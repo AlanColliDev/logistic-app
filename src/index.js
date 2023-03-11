@@ -1,6 +1,6 @@
 // React JS
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, Navigate, } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, createHashRouter } from 'react-router-dom';
 
 // Styles
 import './assets/styles/styles.css';
@@ -15,7 +15,7 @@ import Combustible from './views/logistica/Combustible';
 import { UserProvider } from './context/UserProvider';
 
 
-
+// Use HashRouter to deploy on GitHubPages
 const router = createBrowserRouter([
     {
         path: '/login',
@@ -36,8 +36,8 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: '/another-url',
-        element: <Navigate to='/' />
+        path: '/',
+        element: <Navigate to='/login' />
     }
 ]);
 

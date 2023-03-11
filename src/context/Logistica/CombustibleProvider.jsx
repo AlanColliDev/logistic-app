@@ -3,11 +3,15 @@ import { CombustibleContext } from './';
 
 export const CombustibleProvider = ({ children }) => {
 
-	const [capturaCombustible, setCapturaCombustible] = useState({})
+	const [ dataCombustible, setCapturaCombustible ] = useState({
+		choferData: {},
+		claveRuta: '',
+		combustibleData: {}
+	});	
 
 	return (
-		<CombustibleContext.Provider value={{ capturaCombustible, setCapturaCombustible }}>
-			{ children }
+		<CombustibleContext.Provider value={{ dataCombustible, setCapturaCombustible }}>
+			{children}
 		</CombustibleContext.Provider>
 	)
 }
