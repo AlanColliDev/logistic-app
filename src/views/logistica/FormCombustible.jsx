@@ -1,6 +1,14 @@
+import { useContext } from "react";
+import { CombustibleContext } from "../../context/Logistica";
+
+
 export const FormCombustible = () => {
 
-	const color = 'dark'
+  const { dataCombustible } = useContext(CombustibleContext)
+
+  console.log(dataCombustible)
+
+	const color = 'dark';
 
   return (
 	<>

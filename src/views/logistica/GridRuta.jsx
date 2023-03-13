@@ -1,17 +1,46 @@
-import { useContext } from 'react'
-import { CombustibleContext } from '../../context/Logistica'
 import { RutaItem } from './rutas/RutaItem';
 import { GetRutasByChofer } from '../../services/GetRutasByChofer';
+import { useRutas } from '../../hooks/useRutas';
 
+const BodyPage = ({ isLoading, rutas, HandleSetRuta, claveRuta }) => {
+	if (isLoading) return <div>Sin datos para mostrar</div>;
+
+	return <>
+		<table className="items-center w-full bg-transparent border-collapse">
+			<thead>
+				<tr>
+					<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+						Folio Ruta
+					</th>
+					<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+						Ruta
+					</th>
+					<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+						Unidad
+					</th>
+					<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+						Acción
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{
+					rutas.map(ruta => (
+						<RutaItem key={ruta.folio}
+							ruta={ruta}
+							HandleSetRuta= {HandleSetRuta}
+							rutaSelected= {claveRuta}
+						/>
+					))
+				}
+			</tbody>
+		</table>
+	</>
+}
 
 export const GridRuta = () => {
 
-	const { dataCombustible } = useContext(CombustibleContext);
-	const { choferData } = dataCombustible; 
-	const TitleTable = `RUTAS DE: ${choferData.nombre} ${choferData.apellidopaterno} ${choferData.apellidomaterno} - ${choferData.clave}`;
-
-	const rutas = GetRutasByChofer(choferData.clave);
-	// console.log(foliosRuta)
+	const { TitleTable, rutas, isLoading, claveRuta, HandleSetRuta } = useRutas();
 
 	return (
 		<>
@@ -20,7 +49,7 @@ export const GridRuta = () => {
 					<div className="flex flex-wrap items-center">
 						<div className="relative w-full px-2 max-w-full flex-grow flex-1">
 							<h3 className="font-semibold text-base text-blueGray-700">
-								{ TitleTable }
+								{TitleTable}
 							</h3>
 						</div>
 						<div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
@@ -34,34 +63,12 @@ export const GridRuta = () => {
 					</div>
 				</div>
 				<div className="block w-full overflow-x-auto">
-					{/* Projects table */}
-					<table className="items-center w-full bg-transparent border-collapse">
-						<thead>
-							<tr>
-								<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-									Folio Ruta
-								</th>
-								<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-									Ruta
-								</th>
-								<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-									Unidad
-								</th>
-								<th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-									Acción
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{
-								rutas.map(ruta => (
-									<RutaItem key={ruta.folio} 
-										ruta = {ruta} 
-									/>
-								))
-							}
-						</tbody>
-					</table>
+					<BodyPage
+						isLoading={isLoading}
+						rutas = {rutas}
+						HandleSetRuta = {HandleSetRuta}
+						claveRuta= {claveRuta}
+					/>
 				</div>
 			</div>
 

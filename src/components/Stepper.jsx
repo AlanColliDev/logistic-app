@@ -13,7 +13,7 @@ const Stepper = () => {
 	};
 
 	const HandlePreviousStep = () => {
-		if(!currentStep > steps.length) return;
+		if(currentStep === 1) return;
 		setCurrentStep(prev => prev - 1);
 	};
 
